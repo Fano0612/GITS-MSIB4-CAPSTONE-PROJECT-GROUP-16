@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Cart;
-use App\Models\Transaction;
+use App\Models\Transactions;
 use App\Models\balancesheets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -239,69 +239,75 @@ class ProductController extends Controller
     }
 
     public function paymentProductCart()
-{
-    $userId = auth()->user()->id;
+    {
+        $userId = auth()->user()->id;
 
-    $cartItems = Cart::where('user_id', $userId)->get();
-    $transactionData = [];
-    $balancesheetData = [];
+        $cartItems = Cart::where('user_id', $userId)->get();
+        $transactionData = [];
+        $balancesheetData = [];
 
-    $transactionId = time();
+        $transactionId = time();
 
-    $totalTransactionPrice = 0;
+        $totalTransactionPrice = 0;
 
-    foreach ($cartItems as $cartItem) {
-        $product_price_init = $cartItem->product_price * $cartItem->quantity;
-        $totalwithtax = $product_price_init + ($product_price_init * 0.1);
+        foreach ($cartItems as $cartItem) {
+            $product_price_init = $cartItem->product_price * $cartItem->quantity;
+            $totalwithtax = $product_price_init + ($product_price_init * 0.1);
 
-        $transactionData[] = [
+            $transactionData[] = [
+                'transaction_id' => $transactionId,
+                'user_id' => $userId,
+                'product_id' => $cartItem->product_id,
+                'product_name' => $cartItem->product_name,
+                'product_picture' => $cartItem->product_picture,
+                'product_price' => $cartItem->product_price,
+                'quantity' => $cartItem->quantity,
+                'transaction_status' => 'Paid'
+            ];
+
+            $totalTransactionPrice += $totalwithtax;
+
+            $product = $cartItem->product;
+            if ($product) {
+                $productStock = $product->product_stock - $cartItem->quantity;
+                $product->update([
+                    'product_stock' => $productStock
+                ]);
+            }
+        }
+
+        $balancesheetData[] = [
             'transaction_id' => $transactionId,
             'user_id' => $userId,
-            'product_id' => $cartItem->product_id,
-            'product_name' => $cartItem->product_name,
-            'product_picture' => $cartItem->product_picture,
-            'product_price' => $cartItem->product_price,
-            'quantity' => $cartItem->quantity,
-            'transaction_status' => 'Paid'
+            'transaction_type' => 'Debit',
+            'transaction_name' => 'Sale',
+            'product_price' => $totalTransactionPrice,
+            'created_at' => now(),
+            'updated_at' => now()
         ];
 
-        $totalTransactionPrice += $totalwithtax;
-        
-        $product = $cartItem->product;
-        if ($product) {
-            $productStock = $product->product_stock - $cartItem->quantity;
-            $product->update([
-                'product_stock' => $productStock
-            ]);
-        }
+        Transactions::insert($transactionData);
+        balancesheets::insert($balancesheetData);
+        Cart::where('user_id', $userId)->delete();
+
+        return redirect()->route('showProductCart')->with('success', 'Payment successful');
     }
 
-    $balancesheetData[] = [
-        'transaction_id' => $transactionId,
-        'user_id' => $userId,
-        'transaction_type' => 'Debit',
-        'transaction_name'=> 'Sale',
-        'product_price' => $totalTransactionPrice,
-        'created_at' => now(),
-        'updated_at' => now()
-    ];
 
-    Transaction::insert($transactionData);
-    balancesheets::insert($balancesheetData);
-    Cart::where('user_id', $userId)->delete();
-
-    return redirect()->route('showProductCart')->with('success', 'Payment successful');
-}
-
-    
 
     public function viewProductTransaction($transaction_id)
     {
-        $transaction = Transaction::with('user', 'product')->where('transaction_id', $transaction_id)->firstOrFail();
-        $products = Transaction::where('transaction_id', $transaction_id)->get();
+        $transaction = Transactions::with('user', 'product')->where('transaction_id', $transaction_id)->firstOrFail();
+        $products = Transactions::where('transaction_id', $transaction_id)->get();
 
         return view('transaction_view', compact('transaction', 'products'));
     }
+
+    public function printTransaction($transaction_id)
+    {
+        $transaction = Transactions::with('user', 'product')->where('transaction_id', $transaction_id)->firstOrFail();
+        $products = Transactions::where('transaction_id', $transaction_id)->get();
+
+        return view('generate_invoice', compact('transaction', 'products'));
+    }
 }
-
-

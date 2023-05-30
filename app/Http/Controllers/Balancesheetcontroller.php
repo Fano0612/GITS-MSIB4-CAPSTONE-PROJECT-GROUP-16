@@ -41,7 +41,7 @@ class BalancesheetController extends Controller
             ->first();
         return view('balance_sheet_update', compact('balancesheet'));
     }
-    
+
 
     public function editTransaction(Request $request, $id)
     {

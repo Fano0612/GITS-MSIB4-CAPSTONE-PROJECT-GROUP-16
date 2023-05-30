@@ -36,11 +36,7 @@ class CategoryController extends Controller
                 'product_category.max' => 'Product category must not exceed 255 characters.'
             ]
         );
-
-
-
         Category::create($request->all());
-
         return redirect()->route('category')
             ->with('success', 'Category created successfully.');
     }
