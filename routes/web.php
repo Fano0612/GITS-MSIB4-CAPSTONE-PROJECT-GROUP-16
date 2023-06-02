@@ -18,8 +18,8 @@ use App\Http\Controllers\Balancesheetcontroller;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('', function () {
+    return view('landing');
 });
 
 Route::get('/homepage', function () {

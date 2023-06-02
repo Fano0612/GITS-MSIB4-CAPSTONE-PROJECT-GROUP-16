@@ -1,0 +1,146 @@
+.adjustment {
+    display: flex;
+    align-items: flex-start;
+}
+
+.narrow {
+    width: 170px;
+    height: 150px;
+    margin-top: 5px;
+}
+.contain {
+    object-fit: contain;
+}
+
+.card-border {
+    border-style: solid;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: fit-content;
+    block-size: fit-content;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.card {
+    display: inline-block;
+    margin: 5px;
+
+}
+
+.navbar{
+    background-color: #f89676;
+}
+
+.hr1 {
+    padding: 0;
+    margin: 0;
+}
+
+.list-group{
+    margin-top: 5px;
+}
+
+footer {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.h1-footer {
+    color: rgb(152, 255, 200);
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.text-muted {
+    text-align: center;
+    color: white;
+}
+
+img.sosimg {
+    height: 20px;
+    width: 20px;
+    margin-right: 2px;
+}
+
+.Cart-Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    width: 80%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 1px 12px 0px #000000;
+
+}
+
+.total {
+    text-align: center;
+}
+
+.bayar{
+    /* border: 2px solid #fecccc; */
+    box-shadow: 4px 5px 6px #a96c6c;
+    border-radius: 8px;
+    width: 160px;
+    height: 40px;
+    margin: 38px 0px 16px 503px;
+    background-color: #fe6060;
+}
+
+.bayar h5{
+    margin-bottom: 40px;
+
+}
+.increment-btn{
+    background-color: #eaa3a385;
+    width: 27px ;
+    height: 30px;
+    border-radius: 30%;
+}
+
+.decrement-btn{
+    background-color: #eaa3a385;
+    width: 27px ;
+    height: 30px;
+    border-radius: 30%;
+}
+
+.delete{
+    background-color: #fa745d;
+    box-shadow: 1px 1px 3px #6a6a6ad9;
+    margin: 10px 0px 5px 68px;
+}
+
+#scrollToTopBtn,
+#scrollToBottomBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: #ffc9b6ba;
+    color: #8d3840;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0;
+}
+
+#scrollToTopBtn svg,
+#scrollToBottomBtn svg {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+#scrollToTopBtn:hover,
+#scrollToBottomBtn:hover {
+    background-color: #777;
+}

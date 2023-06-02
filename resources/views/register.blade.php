@@ -1,25 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>G.16 Food & Bev's.</title>
-    <link rel="icon" type="image/x-icon" href="{{ URL::asset('https://www.theworlds50best.com/filestore/png/SRA-Logo-1.png') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <style>
-        .background {
-            position: fixed;
-            background-size: cover;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://www.tagar.id/Asset/uploads2019/1636013819631-ketoprak.jpg');
-            filter: blur(5px);
-        }
-    </style>
+    <title>Jacob's F&B</title>
+    <link rel="icon" type="image/x-icon" href="landing_docs/images/ini.png">
+    <link rel="stylesheet" href="register_docs/regis.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -30,50 +15,64 @@
     }
     ?>
 
+     <!-- NAVBAR CREATION -->
+     <header class="header">
+        <div class="logon">
+            <img src="register_docs/images/logo.png" alt="">
+        </div>
+    </header>
+
+    <!-- LOGIN FORM CREATION -->
     <div class="background"></div>
-    <div class="container" style="position: absolute;top: 60%; left: 50%; transform: translate(-50%, -50%);padding: 20px;margin: auto;">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="card border-4 border-warning mb-10" style="background-color: rgb(243, 204, 137)">
-                    <div class="card-body">
-                        @if($errors->any())
+    <div class="container">
+        <div class="item">
+            <h2 class="logo"></h2>
+            <div class="text-item">
+                <h2>Sign in to <br> <br><span>
+                    JACOB’S F&B 
+                </span></h2>
+                <p>Something Special In The Good Taste!</p>
+                <div class="social-icon">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-google'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="login-section">
+            <div class="form-box register">
+                @if($errors->any())
                         @foreach($errors->all() as $err)
                         <p class="alert alert-danger">{{$err}}</p>
                         @endforeach
                         @endif
                         <form action="{{ route('registeracc') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="text-center">
-                                <img src="{{ asset('images/foodies-nobg.png')}}" class="rounded" alt="" height="120px" width="170px">
-                                <h1>Register</h1>
-                            </div>
-                            <br>
-                            <div class="form-group mb-3">
+                            <h2>Sign Up</h2>
+                            <div class="input-box">
+                                <span class="icon"><i class='bx bxs-user'></i></span>
+                                <input type="text" class="form-control" id="username" name="username"  value="{{ old('username') }}">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username" value="{{ old('username') }}">
                             </div>
-
-                            <div class="form-group mb-3">
+                            <div class="input-box">
+                                <span class="icon"><i class='bx bxs-envelope'></i></span>
+                                <input type="email" class="form-control" id="email" name="email"  value="{{ old('email') }}">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ old('email') }}">
                             </div>
-
-                            <div class="form-group mb-3">
+                            <div class="input-box">
+                                <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                                <input type="password" class="form-control" id="password" name="password" >
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             </div>
-
-                            <div class="form-group mb-3">
+                            <div class="input-box">
+                                <span class="icon"><i class='bx bxs-lock' ></i></span>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" >
                                 <label for="passwordconfirmation">Confirm Password</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
                             </div>
-
-                            <div class="form-group mb-3">
-                                <label for="picture" class="form-label">Picture</label>
+                            <div class="input-box">
+                                <label for="picture" class="form-label"></label>
                                 <input type="file" name="picture" class="form-control" id="picture" required>
                             </div>
-
-                            <div class="form-group mb-3">
+                            <div class="form-group ">
                                 <label for="access_rights">Access</label>
                                 <div class="form-check d-flex">
                                     <div class="me-3">
@@ -85,16 +84,19 @@
                                         <label class="form-check-label" for="user">User</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div>       
+                            
+                        <button type="submit" class="btn btn-danger" style="float:right">Register</button>
 
-                            <a href="{{ route('AccountExist') }}" class="link-danger">Already have an account?</a>
-                            <button type="submit" class="btn btn-danger" style="float:right">Submit</button>
-                        </form>
-                    </div>
+                        <div class="create-account">
+                            <p>Already Have An Account?<a href="{{ route('AccountExist') }}" class="link-danger">&nbsp;Sign In</a></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
+     <!-- SIGN UP FORM CREATION -->
+     <script src="register_docs\regis.js"></script>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

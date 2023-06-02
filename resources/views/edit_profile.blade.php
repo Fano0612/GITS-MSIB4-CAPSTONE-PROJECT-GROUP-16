@@ -15,93 +15,44 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
 
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>G.16 Food & Bev's.</title>
-    <link rel="icon" type="image/x-icon" href="{{ URL::asset('https://www.theworlds50best.com/filestore/png/SRA-Logo-1.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Jacob's F&B</title>
+    <link rel="icon" type="image/x-icon" href="landing_docs/images/ini.png">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="user_docs/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="user_docs/css/font-awesome.css">
+
+    <link rel="stylesheet" href="user_docs/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="user_docs/css/owl-carousel.css">
+
+    <link rel="stylesheet" href="user_docs/css/lightbox.css">
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-        .background {
-            position: fixed;
-            background-size: cover;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://media-cldnry.s-nbcnews.com/image/upload/newscms/2023_05/1963490/puff-pastry-beef-wellington-valentines-day-2x1-zz-230201.jpg');
-            filter: blur(5px);
-        }
+    <link rel="stylesheet" href="trans_docs/trans.css">
 
-        .hr1 {
-            padding: 0;
-            margin: 0;
-        }
 
-        footer {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        .h1-footer {
-            color: rgb(152, 255, 200);
-            text-align: center;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        }
-
-        .text-muted {
-            text-align: center;
-            color: white;
-        }
-
-        img.sosimg {
-            height: 20px;
-            width: 20px;
-            margin-right: 2px;
-        }
-
-        #scrollToTopBtn,
-        #scrollToBottomBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 99;
-            width: 40px;
-            height: 40px;
-            border: none;
-            outline: none;
-            background-color: #555;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 50%;
-            padding: 0;
-        }
-
-        #scrollToTopBtn svg,
-        #scrollToBottomBtn svg {
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-        }
-
-        #scrollToTopBtn:hover,
-        #scrollToBottomBtn:hover {
-            background-color: #777;
-        }
-    </style>
+    
 
 </head>
 
 <body>
-
-    <div class="background"></div>
     <button onclick="scrollToTop()" id="scrollToTopBtn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
             <path d="M12 2L2 12h5v8h10v-8h5L12 2z" />
@@ -112,20 +63,23 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
             <path d="M12 22L22 12h-5V4H7v8H2l10 10z" />
         </svg>
     </button>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+
+        
+    <!-- ***** navbar Start ***** -->
+    <nav class="navbar navbar-expand-lg mb-3">
         <div class="container-fluid">
 
-            <nav class="navbar bg-body-tertiary">
+            <nav class="navbar">
                 <div class="container">
                     <a class="navbar-brand" href="{{route ('homepage')}}">
-                        <img src="{{ URL::asset('https://marketplace.canva.com/EAEzOw_ovvE/1/0/1600w/canva-watercolor-food-logo-0GcpZ9_7Xls.jpg') }}" alt="" width="60" height="55" style="border-radius: 50%;">
+                        <img src="user_docs/images/iii.png" alt="" width="62" height="62">
                     </a>
                 </div>
             </nav>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <h1 class="position-absolute top-50 start-50 translate-middle">Edit Profile</h1>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg">
                     &nbsp; &nbsp;
                     <div class="dropdown ml-auto">
                     </div>
@@ -133,13 +87,13 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
             </div>
         </div>
     </nav>
+<!-- ***** navbar end ***** -->
 
-
-    <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
-        <div class="container" style="position: absolute;top: 60%; left: 50%; transform: translate(-50%, -50%);padding: 20px;margin: auto;">
+    <!-- ***** main Start ***** -->
+        <div class="container" >
             <div class="row justify-content-center">
-                <div class="col-8">
-                    <div class="card border-4 border-warning mb-10" style="background-color: rgb(243, 204, 137)">
+                <div class="col">
+                    <div class="card border-4">
                         <div class="card-body">
                             @if($errors->any())
                             <div class="alert alert-danger">
@@ -179,7 +133,7 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
                                     <label for="picture">Profile Picture:</label>
                                     <input type="file" name="picture" class="form-control-file" value="{{ $user->picture }}">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                                <button type="submit" class="btn btn-success">Update Profile</button>
                             </form>
                         </div>
                     </div>

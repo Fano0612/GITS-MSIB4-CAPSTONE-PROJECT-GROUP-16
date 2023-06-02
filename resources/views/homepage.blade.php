@@ -16,22 +16,32 @@ $profilePicture = $user->picture;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>G.16 Food & Bev's.</title>
-    <link rel="icon" type="image/x-icon" href="{{ URL::asset('https://www.theworlds50best.com/filestore/png/SRA-Logo-1.png') }}">
+    <title>Jacob's F&B</title>
+    <link rel="icon" type="image/x-icon" href="landing_docs/images/ini.png">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="user_docs/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="user_docs/css/font-awesome.css">
+
+    <link rel="stylesheet" href="user_docs/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="user_docs/css/owl-carousel.css">
+
+    <link rel="stylesheet" href="user_docs/css/lightbox.css">
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{{ asset('home_docs/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('home_docs/css/bootstrap.min.css') }}">
+
     <style>
-        .background {
-            position: fixed;
-            background-size: cover;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://wallpaper.dog/large/1423.png');
-            filter: blur(5px);
+
+        .navbar{
+            background-color: #f89676;
         }
 
         .carousel {
@@ -70,10 +80,9 @@ $profilePicture = $user->picture;
             left: 50%;
             transform: translateX(-50%);
             padding: 10px;
-            text-shadow: 2px 2px 4px black;
+            text-shadow: 2px 2px 4px rgb(255, 255, 255);
             color: #ffffff;
             font-size: 1.75rem;
-            background-color: rgb(255, 255, 255, 0.4);
         }
 
         @media (max-width: 767px) {
@@ -293,52 +302,66 @@ $profilePicture = $user->picture;
 </head>
 
 <body>
-
-
-    <div class="background"></div>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <!-- ***** Header Area Start ***** -->
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <nav class="navbar bg-body-tertiary">
+            <nav class="navbar">
                 <div class="container">
-                    <a class="navbar-brand" href="{{route ('homepage')}}">
-                        <img src="{{ URL::asset('https://marketplace.canva.com/EAEzOw_ovvE/1/0/1600w/canva-watercolor-food-logo-0GcpZ9_7Xls.jpg') }}" alt="" width="60" height="55" style="border-radius: 50%;">
+                    <a class="navbar-brand" href="{{route ('productlist')}}">
+                        <img src="user_docs/images/iii.png" alt="" width="62" height="62">
                     </a>
                 </div>
             </nav>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center text-lg-start">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route ('homepage')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('productlist')}}">Products</a>
+                        <a class="nav-link active" aria-current="page" href="{{route ('productlist')}}">Products</a>
                     </li>
+                    <div class="dropdown" style="margin: 1px 6px 22px 4px">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Category
+                        </button>
+                        <ul class="dropdown-menu">
+                            @php
+                            $categories = App\Models\Category::all();
+                            @endphp
+                            <li><a class="dropdown-item" href="{{ route('productlist') }}">All</a></li>
+                            @foreach($categories as $category)
+                            <li><a class="dropdown-item" href="{{ route('productlist', ['category' => $category->id]) }}">{{ $category->product_category }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <!-- ***** category filter end***** -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('product_menu')}}">Manage</a>
+                        <a class="nav-link active" href="{{route ('showProductCart')}}">Cart</a>
+                        &nbsp; &nbsp;
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route ('category')}}">Category</a>
+                        <a class="nav-link active" href="{{route ('transaction_list')}}">Transactions</a>
+                    </li>
+
+
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="{{route ('category')}}">Category</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{route ('transaction_list')}}">Transactions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{route ('balance_sheet')}}">Monetary</a>
-                    </li>
+                    </li> --}}
                 </ul>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a href="{{route ('showProductCart')}}">
-                        <i class="fa fa-shopping-cart" style="font-size:36px"></i>
-                    </a>
-                    &nbsp; &nbsp;
+
+                     <!-- ***** profile start ***** -->
                     <div class="dropdown ml-auto" style="margin-left: auto;">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ URL::asset('images/'.$profilePicture) }}" alt="" width="60" height="55" style="border-radius: 50%;">
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right position-relative" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @if (auth()->check())
                             <a class="dropdown-item" href="{{route ('editprofile')}}">Hello <b>{{ auth()->user()->username }}</a>
                             @endif
@@ -346,29 +369,51 @@ $profilePicture = $user->picture;
                             <a class="dropdown-item" href="{{route ('logout')}}">Logout</a>
                         </div>
                     </div>
-                </nav>
+                    <!-- ***** profile end ***** -->
             </div>
         </div>
     </nav>
+ <!-- ***** navbar end ***** -->
 
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Home Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('home_docs/images/draft/ini.png') }}" alt="" style="object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <br><br><br><br>
+                    <h6 class="section-title bg-white text-start text-primary pe-3">Hello</h6>
+                    <h1 class="mb-4">Welcome to <span class="text-primary">Jacob's F&B</span></h1>
+                    <h6 class="section-title bg-white text-start text-primary pe-3">Something Special In The Good Taste!</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Home End -->
+
+     <!-- carousel start -->
+     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="7000">
-                <img src="https://assets.vogue.com/photos/5f22ce57512a74568845a5ca/4:3/w_2664,h_1998,c_limit/17-off-white-backstage-menss20-acielle.jpg" class="d-block w-100" alt="" style="width:100%; height:400px; object-fit: cover;">
+                <img src="{{ asset('home_docs/images/product/cocktail.jpg') }}" >
                 <div class="carousel-caption d-none d-md-block mb-5">
-                    <h2>Off White</h2>
+                    <h2>Cocktail</h2>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="7000">
-                <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton--W_Fa_Wild_at_Heart_DI1.jpg?wid={IMG_WIDTH}&hei={IMG_HEIGHT}" class="d-block w-100" alt="" style="width:100%; height:400px; object-fit: cover;">
+                <img src="{{ asset('home_docs/images/product/lemonsoda.jpg') }}">
                 <div class="carousel-caption d-none d-md-block mb-5">
-                    <h2>Louis Vuitton</h2>
+                    <h2>Lemon Soda</h2>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="7000">
-                <img src="https://static01.nyt.com/images/2022/12/01/multimedia/30gucci-1-0a1d/30gucci-1-0a1d-superJumbo.jpg" class="d-block w-100" alt="" style="width:100%; height:400px; object-fit: cover;">
+                <img src="{{ asset('home_docs/images/product/sushi.jpg') }}" >
                 <div class="carousel-caption d-none d-md-block mb-5">
-                    <h2>Gucci</h2>
+                    <h2>Sushi</h2>
                 </div>
             </div>
         </div>
@@ -386,8 +431,62 @@ $profilePicture = $user->picture;
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+    <!-- carousel end -->
 
+       <!-- Discount Start -->
+       <div class="container-xxl py-5 destination">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Product</h6>
+                <h1 class="mb-5">Discount</h1>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-7 col-md-6">
+                    <div class="row g-3">
+                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
+                            <a class="position-relative d-block overflow-hidden" href="">
+                                <img class="img-fluid" src="{{ asset('home_docs/images/product/ramen.jpg') }}" alt="">
+                                <div class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">10% OFF</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
+                            <a class="position-relative d-block overflow-hidden" href="">
+                                <img class="img-fluid" src="{{ asset('home_docs/images/product/icecream.jpg') }}" alt="">
+                                <div class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">20% OFF</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
+                            <a class="position-relative d-block overflow-hidden" href="">
+                                <img class="img-fluid" src="{{ asset('home_docs/images/product/satee.jpg') }}" alt="">
+                                <div class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">15% OFF</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
+                    <a class="position-relative d-block h-100 overflow-hidden" href="">
+                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('home_docs/images/product/steak.jpg') }}" alt="" style="object-fit: cover;">
+                        <div class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">5% OFF</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Discount End -->
 
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="home_docs/lib/wow/wow.min.js"></script>
+    <script src="home_docs/lib/easing/easing.min.js"></script>
+    <script src="home_docs/lib/waypoints/waypoints.min.js"></script>
+    <script src="home_docs/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="home_docs/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="home_docs/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="home_docs/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="home_docs/js/main.js"></script>
 </body>
 
 </html>

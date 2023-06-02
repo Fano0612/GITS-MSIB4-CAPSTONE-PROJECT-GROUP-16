@@ -9,59 +9,69 @@ if (auth()->check() && auth()->user()->status != 'active') {
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>G.16 Food & Bev's.</title>
-    <link rel="icon" type="image/x-icon" href="{{ URL::asset('https://www.theworlds50best.com/filestore/png/SRA-Logo-1.png') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Jacob's F&B</title>
+    <link rel="icon" type="image/x-icon" href="landing_docs/images/ini.png">
+    <link rel="stylesheet" href="forget_docs/forget.css"> 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        .background {
-            position: fixed;
-            background-size: cover;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://www.unileverfoodsolutions.co.id/dam/global-ufs/mcos/SEA/calcmenu/recipes/ID-recipes/salads/nasi-pecel/main-header.jpg');
-            filter: blur(5px);
+        ::placeholder { 
+            color:    rgb(0, 0, 0);
         }
     </style>
 </head>
 
+
 <body>
+    <!-- NAVBAR CREATION -->
+    <header class="header">
+        <div class="logon">
+            <img src="login_docs/images/logo.png" alt="">
+        </div>
+    </header>
+
+    <!-- LOGIN FORM CREATION -->
     <div class="background"></div>
-    <div class="container" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%);padding: 20px;margin: auto;">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="card border-4 border-warning mb-10" style="background-color: rgb(243, 204, 137)">
-                    <div class="card-body">
-                        @if($errors->any())
-                        @foreach($errors->all() as $err)
-                        <p class="alert alert-danger">{{$err}}</p>
-                        @endforeach
-                        @endif
+    <div class="container">
+        <div class="item">
+            <h2 class="logo"></h2>
+            <div class="text-item">
+                <h2>Forgot Your <br><span>
+                    Password? 
+                </span></h2>
+                <p>To reset your password, Enter the <br><span>
+                    registered Email address and we <br>
+                    will send you new password</span></p>
+                <div class="social-icon">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-google'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="login-section">
+            <div class="form-box login">
+                @if($errors->any())
+                @foreach($errors->all() as $err)
+                <p class="alert alert-danger">{{$err}}</p>
+                @endforeach
+                @endif
+                
+                @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+                
+                <form action="{{ route('forgotPassword') }}" method="POST">
+                    @csrf
+                    <h2>Forgot Password</h2>
+                    <br>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="">
+                        <label for="email">Email</label>
+                    </div>
 
-                        @if(session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
-
-                        <form action="{{ route('forgotPassword') }}" method="POST">
-                            @csrf
-                            <div class="text-center">
-                                <img src="{{ asset('images/foodies-nobg.png')}}" class="rounded" alt="" height="120px" width="185px">
-                                <h1 class="mt-3">Forgot Password</h1>
-                            </div>
-                            <br>
-
-                            <div class="form-group mb-3 fs-5">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
-                            </div>
 
                             <a href="{{ route('AccountExist') }}?stats=true" class="link-danger">Remember Password?</a>
 

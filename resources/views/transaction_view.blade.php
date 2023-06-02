@@ -6,46 +6,68 @@ if (!auth()->check() || auth()->user()->status != 'active') {
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>G.16 Food & Bev's.</title>
-    <link rel="icon" type="image/x-icon" href="{{ URL::asset('https://www.theworlds50best.com/filestore/png/SRA-Logo-1.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Jacob's F&B</title>
+    <link rel="icon" type="image/x-icon" href="landing_docs/images/ini.png">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="user_docs/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="user_docs/css/font-awesome.css">
+
+    <link rel="stylesheet" href="user_docs/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="user_docs/css/owl-carousel.css">
+
+    <link rel="stylesheet" href="user_docs/css/lightbox.css">
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .adjustment {
-            display: flex;
-            align-items: flex-start;
-        }
+    .adjustment {
+        display: flex;
+        align-items: flex-start;
+    }
 
-        .background {
-            position: fixed;
-            background-size: cover;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://media-cldnry.s-nbcnews.com/image/upload/newscms/2023_05/1963490/puff-pastry-beef-wellington-valentines-day-2x1-zz-230201.jpg');
-            filter: blur(5px);
-        }
+    .card-header {
+        text-align: center;
+        background-color: #f89676;
+    }
+
+    h3{
+        text-align: center;
+    }
+
+    .ini {
+        margin: 10px 0px 0px 480px;
+    }
+
+    .btn{
+        text-align: center;
+        margin-left: 100px;
+        background-color: #f97c53
+    }
     </style>
-
 </head>
 
 <body>
-
-    <div class="background"></div>
     <div class="card">
         <div class="card-header">
-            Transaction Details
+            <h3>Transaction Details</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body ini">
             <div class="row mb-3">
                 <div class="col-sm-3">
                     <h6 class="mb-0">Transaction ID:</h6>
@@ -99,7 +121,7 @@ if (!auth()->check() || auth()->user()->status != 'active') {
 
 
             @foreach(\App\Models\Transactions::where('transaction_id', $transaction->transaction_id)->get() as $transaction)
-            <div class="card" style="width: 18rem; margin-bottom: 9px;">
+            <div class="card" style="width: 18rem; margin-bottom: 16px;">
                 <img src="{{ URL::asset('images/product_pictures/'.$transaction->product_picture)  }}" class="card-img-top" alt="">
                 <div class="card-body">
                     <h5 class="card-title">{{ $transaction->product_name }}</h5>
@@ -118,7 +140,7 @@ if (!auth()->check() || auth()->user()->status != 'active') {
 
             <div class="row mb-3">
                 <div class="col-sm-3">
-                    <a class="btn btn-success" href="{{route ('transaction_list')}}" role="button">Return</a>
+                    <a class="btn" href="{{route ('transaction_list')}}" role="button">Return</a>
                 </div>
             </div>
         </div>
