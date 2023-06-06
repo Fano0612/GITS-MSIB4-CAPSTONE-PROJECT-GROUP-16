@@ -86,3 +86,24 @@ Route::post('/insertTransaction', [Balancesheetcontroller::class, 'insertTransac
 Route::get('/showTransaction/{id}', [Balancesheetcontroller::class, 'showTransaction'])->name('showTransaction');
 Route::put('/editTransaction/{id}', [Balancesheetcontroller::class, 'editTransaction'])->name('editTransaction');
 Route::get('/deleteTransaction/{id}', [Balancesheetcontroller::class, 'deleteTransaction'])->name('deleteTransaction');
+
+// admin
+// Route::get('/product_menu', [ProductController::class, 'index'])->name('product_menu');
+// Route::post('/insertproduct', [ProductController::class, 'insertproduct'])->name('insertproduct');
+
+// Route::post('/editproduct/{product_id}', [ProductController::class, 'editproduct'])->name('editproduct');
+// Route::get('/deleteproduct/{product_id}', [ProductController::class, 'deleteproduct'])->name('deleteproduct');
+
+// Route::get('/category', [CategoryController::class, 'create'])->name('category');
+// Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+// Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
+// Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+// Route::post('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+// Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+// Route::get('/balance_sheet', [Balancesheetcontroller::class, 'index'])->name('balance_sheet');
+// Route::post('/insertTransaction', [Balancesheetcontroller::class, 'insertTransaction'])->name('insertTransaction');
+// Route::get('/showTransaction/{id}', [Balancesheetcontroller::class, 'showTransaction'])->name('showTransaction');
+// Route::put('/editTransaction/{id}', [Balancesheetcontroller::class, 'editTransaction'])->name('editTransaction');
+// Route::get('/deleteTransaction/{id}', [Balancesheetcontroller::class, 'deleteTransaction'])->name('deleteTransaction');
+

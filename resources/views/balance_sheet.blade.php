@@ -23,8 +23,10 @@ $profilePicture = $user->picture;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>G.16 Food & Bev's.</title>
-    <link rel="icon" type="image/x-icon" href="{{ URL::asset('https://www.theworlds50best.com/filestore/png/SRA-Logo-1.png') }}">
+    <title>Jacob's F&B</title>
+    <link rel="shortcut icon" type="image/png" href="admin/images/logos/logo1.png" />
+    <link rel="stylesheet" href="admin/css/styles.min.css" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -32,16 +34,26 @@ $profilePicture = $user->picture;
 
 
     <style>
-        .background {
-            position: fixed;
-            background-size: cover;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://media-cldnry.s-nbcnews.com/image/upload/newscms/2023_05/1963490/puff-pastry-beef-wellington-valentines-day-2x1-zz-230201.jpg');
-            filter: blur(5px);
+       .navbar{
+            background-color: #f89676;
+        }
+
+        .col-8{
+            margin-top: 8px; 
+            margin-bottom: 30px;
+            top: 68%; 
+            left: 50%; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 1px 12px 3px #995151;
+        }
+
+        .coProfit{
+            margin-top: 35px; 
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 9px;
+            box-shadow: 0px 1px 2px 3px #995151;
         }
 
         .hr1 {
@@ -81,8 +93,8 @@ $profilePicture = $user->picture;
             height: 40px;
             border: none;
             outline: none;
-            background-color: #555;
-            color: #fff;
+            background-color: #ffc9b6ba;
+            color: #8d3840;
             cursor: pointer;
             border-radius: 50%;
             padding: 0;
@@ -116,12 +128,13 @@ $profilePicture = $user->picture;
             <path d="M12 22L22 12h-5V4H7v8H2l10 10z" />
         </svg>
     </button>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <nav class="navbar bg-body-tertiary">
+            <nav class="navbar">
                 <div class="container">
-                    <a class="navbar-brand" href="{{route ('homepage')}}">
-                        <img src="{{ URL::asset('https://marketplace.canva.com/EAEzOw_ovvE/1/0/1600w/canva-watercolor-food-logo-0GcpZ9_7Xls.jpg') }}" alt="" width="60" height="55" style="border-radius: 50%;">
+                    <a class="navbar-brand" href="{{route ('productlist')}}">
+                        <img src="{{ URL::asset('admin/images/logos/logo1.png') }}" alt="" width="60" height="55" style="border-radius: 50%;">
                     </a>
                 </div>
             </nav>
@@ -131,29 +144,22 @@ $profilePicture = $user->picture;
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center text-lg-start">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('homepage')}}">Home</a>
+                        <a class="nav-link active" href="{{route ('productlist')}}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('productlist')}}">Products</a>
+                        <a class="nav-link active" href="{{route ('category')}}">Category</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('product_menu')}}">Manage</a>
+                        <a class="nav-link active" href="{{route ('product_menu')}}">Manage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('category')}}">Category</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{route ('transaction_list')}}">Transactions</a>
+                        <a class="nav-link active" href="{{route ('transaction_list')}}">Transactions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route ('balance_sheet')}}">Monetary</a>
                     </li>
                 </ul>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a href="{{route ('showProductCart')}}">
-                        <i class="fa fa-shopping-cart" style="font-size:36px"></i>
-                    </a>
-                    &nbsp; &nbsp;
+                <nav class="navbar navbar-expand-lg">
                     <div class="dropdown ml-auto" style="margin-left: auto;">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ URL::asset('images/'.$profilePicture) }}" alt="" width="60" height="55" style="border-radius: 50%;">
@@ -280,7 +286,9 @@ $profilePicture = $user->picture;
     </div>
 
     <div class="container">
-        <canvas id="transactionChart" style="background-color: white; margin-bottom: 30px;"></canvas>
+        <div class="coProfit">
+            <canvas id="transactionChart" style="background-color: white; margin-bottom: 30px;"></canvas>
+        </div>
     </div>
 
     <style>
