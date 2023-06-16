@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Cart;
 use App\Models\Transactions;
-use App\Models\balancesheets;
+use App\Models\Balancesheets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
