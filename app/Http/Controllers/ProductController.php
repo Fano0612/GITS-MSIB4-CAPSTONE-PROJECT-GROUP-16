@@ -287,7 +287,7 @@ class ProductController extends Controller
         ];
 
         Transactions::insert($transactionData);
-        balancesheets::insert($balancesheetData);
+        Balancesheets::insert($balancesheetData);
         Cart::where('user_id', $userId)->delete();
 
         return redirect()->route('showProductCart')->with('success', 'Payment successful');
