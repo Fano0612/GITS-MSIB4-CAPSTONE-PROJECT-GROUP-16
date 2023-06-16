@@ -1,7 +1,7 @@
 <?php
 if (!auth()->check() || auth()->user()->status != 'active') {
     echo "<script>alert('Please login to access the system');</script>";
-    echo "<script>setTimeout(function() { window.location.href = '/login'; }, 1000);</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/landing'; }, 1000);</script>";
     die();
 }
 ?>
@@ -21,8 +21,8 @@ if (auth()->user()->access_rights != 'Merchant') {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jacob's F&B</title>
-  <link rel="shortcut icon" type="image/png" href="images/logos/logo1.png" />
-  <link rel="stylesheet" href="css/styles.min.css" />
+  <link rel="shortcut icon" type="image/png" href="admin/images/logos/logo1.png">
+  <link rel="stylesheet" href="admin/css/styles.min.css" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -36,15 +36,26 @@ if (auth()->user()->access_rights != 'Merchant') {
       }
 
       h3{
+        margin-left: 33rem;
+        margin-top: 1rem;
         text-align: center;
-        margin-bottom: 25px;
+      }
+      .container-fluid{
+        background-color: #FA896B;
+        height: 5rem;
       }
 
       .col-8{
+        margin-top: 3rem;
         position: absolute;
         padding: 20px;
-        box-shadow: 0px 1px 10px 0px #252424;
+        border-block: 5px dotted #f86941;
     }
+
+    [type=submit], button, .btn{
+    margin-left: 22rem;
+    font-size: 14px;
+}
 
       footer {
           background-color: rgba(255, 255, 255, 0.7);
@@ -92,9 +103,10 @@ if (auth()->user()->access_rights != 'Merchant') {
       <!--  Header End -->
 
       <div class="container-fluid">
-        <br>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pages / Manage Product / Edit Product</p>
-        <h3>Edit Product</h3>
+        <div class="nav">
+            <h3>Edit Product</h3>
+        </div>
+        
         <!--  Row 1 -->
         <div class="row justify-content-center">
             <div class="col-8">
@@ -108,20 +120,20 @@ if (auth()->user()->access_rights != 'Merchant') {
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                                <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$productdata->product_name}}">
+                                <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$productdata->product_name}}" required>
                             </div>
                             <div class="mb-3">
 
                                 <label for="exampleInputEmail1" class="form-label">Price</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="number" name="product_price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$productdata->product_price}}">
+                                    <input type="number" name="product_price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$productdata->product_price}}" required>
                                     <span class="input-group-text">.00</span>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Stock</label>
-                                <input type="number" name="product_stock" class="form-control input-number" id="exampleInputEmail1" value="{{ $productdata->product_stock }}" min="1" aria-describedby="emailHelp">
+                                <input type="number" name="product_stock" class="form-control input-number" id="exampleInputEmail1" value="{{ $productdata->product_stock }}" min="1" aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Picture</label>
@@ -129,7 +141,7 @@ if (auth()->user()->access_rights != 'Merchant') {
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Product Category</label>
-                                <select class="form-select" name="category_id" aria-label="Default select example">
+                                <select class="form-select" name="category_id" aria-label="Default select example" required>
                                     <option value="{{$productdata->category_id}}" selected>{{$productdata->categories->product_category }}</option>
                                     @php
                                     $category = App\Models\Category::all();
@@ -150,13 +162,13 @@ if (auth()->user()->access_rights != 'Merchant') {
       </div>
     </div>
   </div>
-  <script src="libs/jquery/dist/jquery.min.js"></script>
-  <script src="libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/sidebarmenu.js"></script>
-  <script src="js/app.min.js"></script>
-  <script src="libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="libs/simplebar/dist/simplebar.js"></script>
-  <script src="js/dashboard.js"></script>
+  <script src="admin/libs/jquery/dist/jquery.min.js"></script>
+  <script src="admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="admin/js/sidebarmenu.js"></script>
+  <script src="admin/js/app.min.js"></script>
+  <script src="admin/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="admin/libs/simplebar/dist/simplebar.js"></script>
+  <script src="admin/js/dashboard.js"></script>
 </body>
 
 </html>

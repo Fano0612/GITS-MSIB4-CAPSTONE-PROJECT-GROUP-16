@@ -87,28 +87,33 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
         $credentials = $request->only(['email', 'password']);
-
+    
         if (Auth::attempt([
             'email' => $credentials['email'],
             'password' => $credentials['password']
         ])) {
-
+    
             $user = Auth::user();
             if ($user && $user->status === 'inactive') {
                 $user->status = 'active';
                 $user->save();
                 $request->session()->regenerate();
-
-                return redirect()->intended('homepage');
+    
+                if ($user->access_rights === 'Merchant') {
+                    return redirect()->intended('product_menu');
+                } else if ($user->access_rights === 'User') {
+                    return redirect()->intended('homepage');
+                }
             }
         }
-
+    
         return back()->withErrors([
             'email' => 'Email or Password is incorrect',
         ]);
     }
+    
 
     public function logout(Request $request)
     {
@@ -119,8 +124,9 @@ class UserController extends Controller
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
+
         }
-        return view('login');
+        return view('landing');
     }
 
 

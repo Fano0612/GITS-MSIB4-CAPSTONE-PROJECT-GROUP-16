@@ -1,7 +1,7 @@
 <?php
 if (!auth()->check() || auth()->user()->status != 'active') {
     echo "<script>alert('Please login to access the system');</script>";
-    echo "<script>setTimeout(function() { window.location.href = '/login'; }, 1000);</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/landing'; }, 1000);</script>";
     die();
 }
 ?>
@@ -115,11 +115,11 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
                                 <br>
                                 <div class="form-group mb-3">
                                     <label for="username">Username:</label>
-                                    <input type="text" name="username" class="form-control" value="{{ $user->username }}">
+                                    <input type="text" name="username" class="form-control" value="{{ $user->username }}" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="email">Email:</label>
-                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="password">New Password:</label>
@@ -131,9 +131,9 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="picture">Profile Picture:</label>
-                                    <input type="file" name="picture" class="form-control-file" value="{{ $user->picture }}">
+                                    <input type="file" name="picture" class="form-control-file" value="{{ $user->picture }}" >
                                 </div>
-                                <button type="submit" class="btn btn-success">Update Profile</button>
+                                <button type="submit" class="btn btn-outline-danger">Update Profile</button>
                             </form>
                         </div>
                     </div>

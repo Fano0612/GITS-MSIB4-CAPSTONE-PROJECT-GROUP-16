@@ -26,6 +26,22 @@ Route::get('/homepage', function () {
     return view('homepage');
 })->name('homepage');
 
+Route::get('/homepage_admin', function () {
+    return view('homepage_admin');
+})->name('homepage_admin');
+
+Route::get('/transaction_list_admin', function () {
+    return view('transaction_list_admin');
+})->name('transaction_list_admin');
+
+Route::get('/transaction_view_admin', function () {
+    return view('transaction_view_admin');
+})->name('transaction_view_admin');
+
+Route::get('/landing', function () {
+    return view('landing');
+})->name('landing');
+
 Route::get('/forgot_password', function () {
     return view('forgot_password');
 })->name('forgot_password');
@@ -33,6 +49,10 @@ Route::get('/forgot_password', function () {
 Route::get('/generate_invoice', function () {
     return view('generate_invoice');
 })->name('generate_invoice');
+
+Route::get('/generate_invoice_admin', function () {
+    return view('generate_invoice_admin');
+})->name('generate_invoice_admin');
 
 Route::get('/transaction_list', function () {
     return view('transaction_list');
@@ -72,6 +92,8 @@ Route::delete('/removeProductCart/{id}', [App\Http\Controllers\ProductController
 Route::post('/paymentProductCart', [App\Http\Controllers\ProductController::class, 'paymentProductCart'])->name('paymentProductCart');
 Route::get('/viewProductTransaction/{transactionId}', [ProductController::class, 'viewProductTransaction'])->name('viewProductTransaction');
 Route::get('/printTransaction/{transactionId}', [ProductController::class, 'printTransaction'])->name('printTransaction');
+Route::get('/viewProductTransactionAdmin/{transactionId}', [ProductController::class, 'viewProductTransactionAdmin'])->name('viewProductTransactionAdmin');
+Route::get('/printTransactionAdmin/{transactionId}', [ProductController::class, 'printTransactionAdmin'])->name('printTransactionAdmin');
 
 
 Route::get('/category', [CategoryController::class, 'create'])->name('category');
@@ -86,24 +108,3 @@ Route::post('/insertTransaction', [Balancesheetcontroller::class, 'insertTransac
 Route::get('/showTransaction/{id}', [Balancesheetcontroller::class, 'showTransaction'])->name('showTransaction');
 Route::put('/editTransaction/{id}', [Balancesheetcontroller::class, 'editTransaction'])->name('editTransaction');
 Route::get('/deleteTransaction/{id}', [Balancesheetcontroller::class, 'deleteTransaction'])->name('deleteTransaction');
-
-// admin
-// Route::get('/product_menu', [ProductController::class, 'index'])->name('product_menu');
-// Route::post('/insertproduct', [ProductController::class, 'insertproduct'])->name('insertproduct');
-
-// Route::post('/editproduct/{product_id}', [ProductController::class, 'editproduct'])->name('editproduct');
-// Route::get('/deleteproduct/{product_id}', [ProductController::class, 'deleteproduct'])->name('deleteproduct');
-
-// Route::get('/category', [CategoryController::class, 'create'])->name('category');
-// Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-// Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
-// Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-// Route::post('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
-// Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-
-// Route::get('/balance_sheet', [Balancesheetcontroller::class, 'index'])->name('balance_sheet');
-// Route::post('/insertTransaction', [Balancesheetcontroller::class, 'insertTransaction'])->name('insertTransaction');
-// Route::get('/showTransaction/{id}', [Balancesheetcontroller::class, 'showTransaction'])->name('showTransaction');
-// Route::put('/editTransaction/{id}', [Balancesheetcontroller::class, 'editTransaction'])->name('editTransaction');
-// Route::get('/deleteTransaction/{id}', [Balancesheetcontroller::class, 'deleteTransaction'])->name('deleteTransaction');
-

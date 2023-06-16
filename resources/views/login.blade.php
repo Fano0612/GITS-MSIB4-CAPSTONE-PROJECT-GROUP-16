@@ -1,7 +1,12 @@
 <?php
 if (auth()->check()) {
-    header('Location: /productlist');
-    exit();
+    if (auth()->user()->access_rights == 'Merchant') {
+        header('Location: /product_menu');
+        exit();
+    } elseif (auth()->user()->access_rights == 'User') {
+        header('Location: /homepage');
+        exit();
+    }
 }
 if (auth()->check() && auth()->user()->status != 'active') {
     header('Location: /login');
@@ -55,12 +60,12 @@ if (auth()->check() && auth()->user()->status != 'active') {
                     <h2>Sign In</h2>
                     <div class="input-box">
                         <span class="icon"><i class='bx bxs-envelope'></i></span>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" required>
                         <label for="email">Email</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password" required>
                         <label for="password">Password</label>
                     </div>
                     <button type="submit" class="btn btn-danger" style="float:right">Login</button>

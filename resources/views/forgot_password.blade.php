@@ -1,11 +1,21 @@
 <?php
 if (auth()->check()) {
-    header('Location: /homepage');
-    exit();
+    if (auth()->user()->access_rights == 'Merchant') {
+        header('Location: /product_menu');
+        exit();
+    } elseif (auth()->user()->access_rights == 'User') {
+        header('Location: /homepage');
+        exit();
+    }
 }
 if (auth()->check() && auth()->user()->status != 'active') {
-    header('Location: /login');
-    exit();
+    if (auth()->user()->access_rights == 'Merchant') {
+        header('Location: /product_menu');
+        exit();
+    } elseif (auth()->user()->access_rights == 'User') {
+        header('Location: /homepage');
+        exit();
+    }
 }
 ?>
 
@@ -68,7 +78,7 @@ if (auth()->check() && auth()->user()->status != 'active') {
                     <br>
                     <div class="input-box">
                         <span class="icon"><i class='bx bxs-envelope'></i></span>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="" required>
                         <label for="email">Email</label>
                     </div>
 

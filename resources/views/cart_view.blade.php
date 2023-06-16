@@ -2,7 +2,7 @@
 $cl = (object) array('product_id' => '');
 if (!auth()->check() || !auth()->user() || auth()->user()->status != 'active') {
     echo "<script>alert('Please login to access the system!');</script>";
-    echo "<script>setTimeout(function() { window.location.href = '/login'; }, 1000);</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/landing'; }, 1000);</script>";
     die();
 }
 
@@ -11,7 +11,7 @@ if (!auth()->check() || !auth()->user() || auth()->user()->status != 'active') {
 <?php
 if (auth()->user()->access_rights != 'User') {
     echo "<script>alert('Merchant can't access cart!');</script>";
-    echo "<script>setTimeout(function() { window.location.href = '/homepage'; }, 1000);</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/product_menu'; }, 1000);</script>";
     die();
 }
 $user = auth()->user();

@@ -310,4 +310,19 @@ class ProductController extends Controller
 
         return view('generate_invoice', compact('transaction', 'products'));
     }
+        public function viewProductTransactionAdmin($transaction_id)
+    {
+        $transaction = Transactions::with('user', 'product')->where('transaction_id', $transaction_id)->firstOrFail();
+        $products = Transactions::where('transaction_id', $transaction_id)->get();
+
+        return view('transaction_view_admin', compact('transaction', 'products'));
+    }
+
+    public function printTransactionAdmin($transaction_id)
+    {
+        $transaction = Transactions::with('user', 'product')->where('transaction_id', $transaction_id)->firstOrFail();
+        $products = Transactions::where('transaction_id', $transaction_id)->get();
+
+        return view('generate_invoice_admin', compact('transaction', 'products'));
+    }
 }

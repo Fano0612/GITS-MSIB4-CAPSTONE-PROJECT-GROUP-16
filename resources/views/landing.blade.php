@@ -1,3 +1,10 @@
+<?php
+if (auth()->check() && auth()->user()->status != 'active') {
+  echo "<script>setTimeout(function() { window.location.href = '/landing'; }, 1000);</script>";
+} elseif (auth()->check()) {
+  echo "<script>setTimeout(function() { window.location.href = '/homepage'; });</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

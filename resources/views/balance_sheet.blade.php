@@ -1,7 +1,7 @@
 <?php
 if (!auth()->check() || auth()->user()->status != 'active') {
     echo "<script>alert('Please login to access the system');</script>";
-    echo "<script>setTimeout(function() { window.location.href = '/login'; }, 1000);</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/landing'; }, 1000);</script>";
     die();
 }
 ?>
@@ -39,17 +39,17 @@ $profilePicture = $user->picture;
         }
 
         .col-8{
-            margin-top: 8px; 
+            margin-top: 8px;
             margin-bottom: 30px;
-            top: 68%; 
-            left: 50%; 
+            top: 68%;
+            left: 50%;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 1px 12px 3px #995151;
         }
 
         .coProfit{
-            margin-top: 35px; 
+            margin-top: 35px;
             margin-bottom: 30px;
             padding: 20px;
             border-radius: 9px;
@@ -144,16 +144,13 @@ $profilePicture = $user->picture;
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center text-lg-start">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('productlist')}}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link active" href="{{route ('category')}}">Category</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="{{route ('product_menu')}}">Manage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('transaction_list')}}">Transactions</a>
+                        <a class="nav-link active" href="{{route ('transaction_list_admin')}}">Transactions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route ('balance_sheet')}}">Monetary</a>

@@ -1,7 +1,7 @@
 <?php
 if (!auth()->check() || auth()->user()->status != 'active') {
     echo "<script>alert('Please login to access the system');</script>";
-    echo "<script>setTimeout(function() { window.location.href = '/login'; }, 1000);</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/landing'; }, 1000);</script>";
     die();
 }
 ?>
@@ -90,15 +90,7 @@ $profilePicture = $user->picture;
                       <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                       <span class="hide-menu"></span>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="productlist" aria-expanded="false">
-                          <span>
-                            <i class="ti ti-layout-dashboard"></i>
 
-                          </span>
-                          <span class="hide-menu" href="{{route ('productlist')}}">Dashboard</span>
-                        </a>
-                      </li>
                       <li class="sidebar-item">
                         <a class="sidebar-link" href="category" aria-expanded="false">
                           <span>
@@ -116,11 +108,11 @@ $profilePicture = $user->picture;
                       </a>
                     </li>
                     <li class="sidebar-item">
-                      <a class="sidebar-link" href="transaction_list" aria-expanded="false">
+                      <a class="sidebar-link" href="transaction_list_admin" aria-expanded="false">
                         <span>
                           <i class="ti ti-book"></i>
                         </span>
-                        <span class="hide-menu" href="{{route ('transaction_list')}}">Transactions</span>
+                        <span class="hide-menu" href="{{route ('transaction_list_admin')}}">Transactions</span>
                       </a>
                     </li>
                     <li class="sidebar-item">

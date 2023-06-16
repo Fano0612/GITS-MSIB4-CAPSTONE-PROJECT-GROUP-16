@@ -1,7 +1,12 @@
 <?php
 if (!auth()->check() || auth()->user()->status != 'active') {
     echo "<script>alert('Please login to access the system!');</script>";
-    echo "<script>setTimeout(function() { window.location.href = '/login'; }, 1000);</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/landing'; }, 1000);</script>";
+    die();
+}
+if (auth()->user()->access_rights != 'User') {
+    echo "<script>alert('You are not a User!');</script>";
+    echo "<script>setTimeout(function() { window.location.href = '/product_menu'; }, 1000);</script>";
     die();
 }
 $user = auth()->user();
