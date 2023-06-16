@@ -21,78 +21,155 @@ $profilePicture = $user->picture;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jacob's F&B</title>
     <link rel="shortcut icon" type="image/png" href="admin/images/logos/logo1.png" />
+    <link rel="stylesheet" href="admin/css/styles.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .navbar{
-            background-color: #f89676;
+        .hr1 {
+            padding: 0;
+            margin: 0;
         }
-        
-        .card-border {
-            border-style: solid;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: fit-content;
-            block-size: fit-content;
-            border-color: rgb(0, 0, 0);
-            margin-top: 30px;
-            margin-bottom: 30px;
-            margin-right: auto;
-            margin-left: auto;
+        footer {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .h1-footer {
+            color: rgb(152, 255, 200);
+            text-align: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .text-muted {
+            text-align: center;
+            color: white;
+        }
+        img.sosimg {
+            height: 20px;
+            width: 20px;
+            margin-right: 2px;
         }
     </style>
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <nav class="navbar">
-                <div class="container">
-                    <a class="navbar-brand" href="{{route ('productlist')}}">
-                        <img src="{{ URL::asset('admin/images/logos/logo1.png') }}" alt="" width="60" height="55" style="border-radius: 50%;">
-                    </a>
-                </div>
-            </nav>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center text-lg-start">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo mt-4 d-flex align-items-center justify-content-between">
+          <a href="{{route ('productlist')}}" class="text-nowrap logo-img">
+            <img src="{{ URL::asset('admin/images/logos/logo1.png') }}" alt="" width="180"/>
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('category')}}">Category</a>
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+              <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                  <ul id="sidebarnav">
+  
+  
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu"></span>
+                      </li>
+                        <li class="sidebar-item">
+                          <a class="sidebar-link" href="category" aria-expanded="false">
+                            <span>
+                              <i class="ti ti-package"></i>
+                            </span>
+                            <span class="hide-menu" href="{{route ('category')}}">Category</span>
+                          </a>
+                        </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link" href="product_menu" aria-expanded="false">
+                          <span>
+                            <i class="ti ti-settings"></i>
+                          </span>
+                          <span class="hide-menu" href="{{route ('product_menu')}}">Manage Product</span>
+                        </a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link" href="transaction_list" aria-expanded="false">
+                          <span>
+                            <i class="ti ti-book"></i>
+                          </span>
+                          <span class="hide-menu" href="{{route ('transaction_list')}}">Transactions</span>
+                        </a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link" href="balance_sheet" aria-expanded="false">
+                          <span>
+                              <i class="ti ti-clipboard"></i>
+                          </span>
+                          <span class="hide-menu" href="{{route ('balance_sheet')}}">Monetary</span>
+  
+                        </a>
+                      </li>
+  
+                      <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu"></span>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link" href="logout" aria-expanded="false">
+                          <span>
+                            <i class="ti ti-login"></i>
+                          </span>
+                          <span class="hide-menu" href="{{route ('logout')}}">Log Out</span>
+                        </a>
+                      </li>
+                    </nav>
+
+                </nav>
+                <!-- End Sidebar navigation -->
+              </div>
+              <!-- End Sidebar scroll-->
+            </aside>
+            <!--  Sidebar End -->
+            <!--  Main wrapper -->
+            <div class="body-wrapper">
+              <!--  Header Start -->
+              <header class="app-header">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                  <ul class="navbar-nav">
+                    <li class="nav-item d-block d-xl-none">
+                      <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                        <i class="ti ti-menu-2"></i>
+                      </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('product_menu')}}">Manage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page " href="{{route ('transaction_list_admin')}}">Transactions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('balance_sheet')}}">Monetary</a>
                     </li>
                 </ul>
-                <nav class="navbar navbar-expand-lg">
-                    <div class="dropdown ml-auto" style="margin-left: auto;">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ URL::asset('images/'.$profilePicture) }}" alt="" width="60" height="55" style="border-radius: 50%;">
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right position-relative" aria-labelledby="dropdownMenuButton">
-                            @if (auth()->check())
-                            <a class="dropdown-item" href="{{route ('editprofile')}}">Hello <b>{{ auth()->user()->username }}</a>
-                            @endif
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route ('logout')}}">Logout</a>
+                <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                  <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="{{ URL::asset('images/'.$profilePicture) }}" alt="" width="35" height="35" class="rounded-circle">
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                        <div class="message-body">
+                          @if (auth()->check())
+                                  <a class="dropdown-item" href="{{route ('editprofile')}}">Hello <b>{{ auth()->user()->username }}</a>
+                                  @endif
+      
+                          <a href="{{route ('logout')}}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                         </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </nav>
-
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              <p>Pages / Transactions</p> </p>
+        <h3>Transaction List</h3>
     <div class="mt-5 mb-5 text-center">
+
         <div class="container" style="width: 500px; display: inline-block;">
             @php
             $accessRights = auth()->user()->access_rights;
