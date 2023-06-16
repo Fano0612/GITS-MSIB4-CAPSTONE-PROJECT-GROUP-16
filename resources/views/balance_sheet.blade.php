@@ -34,10 +34,6 @@ $profilePicture = $user->picture;
 
 
     <style>
-       .navbar{
-            background-color: #f89676;
-        }
-
         .col-8{
             margin-top: 8px;
             margin-bottom: 30px;
@@ -59,6 +55,9 @@ $profilePicture = $user->picture;
         .hr1 {
             padding: 0;
             margin: 0;
+        }
+        p{
+            font-weight: bold;
         }
 
         footer {
@@ -129,112 +128,159 @@ $profilePicture = $user->picture;
         </svg>
     </button>
 
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <nav class="navbar">
-                <div class="container">
-                    <a class="navbar-brand" href="{{route ('productlist')}}">
-                        <img src="{{ URL::asset('admin/images/logos/logo1.png') }}" alt="" width="60" height="55" style="border-radius: 50%;">
-                    </a>
-                </div>
-            </nav>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center text-lg-start">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('category')}}">Category</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('product_menu')}}">Manage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route ('transaction_list_admin')}}">Transactions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route ('balance_sheet')}}">Monetary</a>
-                    </li>
-                </ul>
-                <nav class="navbar navbar-expand-lg">
-                    <div class="dropdown ml-auto" style="margin-left: auto;">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ URL::asset('images/'.$profilePicture) }}" alt="" width="60" height="55" style="border-radius: 50%;">
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right position-relative" aria-labelledby="dropdownMenuButton">
-                            @if (auth()->check())
-                            <a class="dropdown-item" href="{{route ('editprofile')}}">Hello <b>{{ auth()->user()->username }}</a>
-                            @endif
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route ('logout')}}">Logout</a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+    {{--  --}}
+    <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+  data-sidebar-position="fixed" data-header-position="fixed">
+  <!-- Sidebar Start -->
+  <aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+      <div class="brand-logo mt-4 d-flex align-items-center justify-content-between">
+        <a href="" class="text-nowrap logo-img">
+          <img src="admin/images/logos/logo.png" width="180" alt="" />
+        </a>
+        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+          <i class="ti ti-x fs-8"></i>
         </div>
-    </nav>
+      </div>
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+        <ul id="sidebarnav">
+          <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+              <ul id="sidebarnav">
 
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu"></span>
+                  </li>
+                    <li class="sidebar-item">
+                      <a class="sidebar-link" href="category" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-package"></i>
+                        </span>
+                        <span class="hide-menu" href="{{route ('category')}}">Category</span>
+                      </a>
+                    </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="product_menu" aria-expanded="false">
+                      <span>
+                        <i class="ti ti-settings"></i>
+                      </span>
+                      <span class="hide-menu" href="{{route ('product_menu')}}">Manage Product</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="transaction_list" aria-expanded="false">
+                      <span>
+                        <i class="ti ti-book"></i>
+                      </span>
+                      <span class="hide-menu" href="{{route ('transaction_list')}}">Transactions</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="balance_sheet" aria-expanded="false">
+                      <span>
+                          <i class="ti ti-clipboard"></i>
+                      </span>
+                      <span class="hide-menu" href="{{route ('balance_sheet')}}">Monetary</span>
 
-    <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="card">
-                    <div class="card-body">
-                        @php
-                        $BS = App\Models\Balancesheets::all();
-                        @endphp
-                        <form action="{{ route('insertTransaction') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="exampleInputName" class="form-label">Transaction Name</label>
-                                <input type="text" name="transaction_name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" onchange="checkNameLength(this.value)" required>
-                                <span id="name-error-msg" class="error-msg"></span>
-                                <script>
-                                    function checkNameLength(name) {
-                                        if (name.length > 255) {
-                                            alert("Invalid Transaction Name! Please enter a name with less than 255 characters.");
-                                            document.getElementById("exampleInputName").value = "";
-                                            document.getElementById("name-error-msg").textContent = "";
-                                        } else {
-                                            document.getElementById("name-error-msg").textContent = "";
-                                        }
-                                    }
-                                </script>
-                            </div>
+                    </a>
+                  </li>
 
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Amount</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Rp</span>
-                                    <input type="number" name="product_price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    <span class="input-group-text">.00</span>
-                                </div>
-                                <script>
-                                    $(document).ready(function() {
-                                        $('form').submit(function(event) {
-                                            var price = $('input[name="product_price"]').val();
-                                            if (isNaN(price)) {
-                                                alert('Please enter a valid number for the price.');
-                                                event.preventDefault();
+                  <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu"></span>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="logout" aria-expanded="false">
+                      <span>
+                        <i class="ti ti-login"></i>
+                      </span>
+                      <span class="hide-menu" href="{{route ('logout')}}">Log Out</span>
+                    </a>
+                  </li>
+                </nav>
+
+              </nav>
+              <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+          </aside>
+            <!--  Sidebar End -->
+            <!--  Main wrapper -->
+    <div class="body-wrapper">
+        <!--  Header Start -->
+        <!--  Header End -->
+        <div class="container-fluid">
+
+            <!--  Row Input -->
+            <div class="row">
+              <div class="row">
+                <div class="col-lg-8 d-flex align-items-stretch">
+                </div>
+              </div>
+              <p>
+                <p>Pages / Monetary</p> </p>
+              <h3>Monetary</h3>
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            @php
+                            $BS = App\Models\Balancesheets::all();
+                            @endphp
+                            <form action="{{ route('insertTransaction') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="exampleInputName" class="form-label">Transaction Name</label>
+                                    <input type="text" name="transaction_name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" onchange="checkNameLength(this.value)" required>
+                                    <span id="name-error-msg" class="error-msg"></span>
+                                    <script>
+                                        function checkNameLength(name) {
+                                            if (name.length > 255) {
+                                                alert("Invalid Transaction Name! Please enter a name with less than 255 characters.");
+                                                document.getElementById("exampleInputName").value = "";
+                                                document.getElementById("name-error-msg").textContent = "";
+                                            } else {
+                                                document.getElementById("name-error-msg").textContent = "";
                                             }
+                                        }
+                                    </script>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Amount</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" name="product_price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('form').submit(function(event) {
+                                                var price = $('input[name="product_price"]').val();
+                                                if (isNaN(price)) {
+                                                    alert('Please enter a valid number for the price.');
+                                                    event.preventDefault();
+                                                }
+                                            });
                                         });
-                                    });
-                                </script>
+                                    </script>
 
-                            </div>
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Transaction Type</label>
-                                <select class="form-select" name="transaction_type" required>
-                                    <option value="" selected disabled hidden>Choose a Transaction Type</option>
-                                    <option value="Debit">Debit</option>
-                                    <option value="Credit">Credit</option>
-                                </select>
-                            </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Transaction Type</label>
+                                    <select class="form-select" name="transaction_type" required>
+                                        <option value="" selected disabled hidden>Choose a Transaction Type</option>
+                                        <option value="Debit">Debit</option>
+                                        <option value="Credit">Credit</option>
+                                    </select>
+                                </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                 </div>
             </div>
         </div>
