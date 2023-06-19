@@ -175,7 +175,7 @@ $profilePicture = $user->picture;
                       <span>
                         <i class="ti ti-book"></i>
                       </span>
-                      <span class="hide-menu" href="{{route ('transaction_list')}}">Transactions</span>
+                      <span class="hide-menu" href="{{route ('transaction_list_admin')}}">Transactions</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
