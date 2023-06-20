@@ -45,15 +45,21 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
           margin: 0;
       }
       h3{
+        margin-left: 33rem;
+        margin-top: 1rem;
         text-align: center;
-        margin-bottom: 25px;
+      }
+
+      .container-fluid{
+        background-color: #FA896B;
+        height: 5rem;
       }
 
       .col-8{
+        margin-top: 3rem;
         position: absolute;
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 1px 10px 0px #252424;
+        border-block: 5px dotted #f86941;
     }
 
       footer {
@@ -102,9 +108,10 @@ if (isset($_FILES['product_picture']) && $_FILES['product_picture']['error'] == 
       <!--  Header End -->
 
       <div class="container-fluid" >
-        <br>
-        <p style="color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pages / Category / Edit Category</p>
-        <h3>Edit Category</h3>
+        <div class="nav">
+            <h3>Edit Category</h3>
+        </div>
+
         <!--  Row 1 -->
         <div class="row justify-content-center">
             <div class="col-8">
