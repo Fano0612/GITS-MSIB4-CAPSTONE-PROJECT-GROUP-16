@@ -95,7 +95,7 @@ $profilePicture = $user->picture;
                         </a>
                       </li>
                       <li class="sidebar-item">
-                        <a class="sidebar-link" href="transaction_list" aria-expanded="false">
+                        <a class="sidebar-link" href="transaction_list_admin" aria-expanded="false">
                           <span>
                             <i class="ti ti-book"></i>
                           </span>
@@ -166,6 +166,7 @@ $profilePicture = $user->picture;
                   </ul>
                 </div>
               </nav>
+              </header>
               <p>Pages / Transactions</p> </p>
         <h3>Transaction List</h3>
     <div class="mt-5 mb-5 text-center">

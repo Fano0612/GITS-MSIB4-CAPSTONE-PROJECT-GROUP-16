@@ -171,7 +171,7 @@ $profilePicture = $user->picture;
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="transaction_list" aria-expanded="false">
+                    <a class="sidebar-link" href="transaction_list_admin" aria-expanded="false">
                       <span>
                         <i class="ti ti-book"></i>
                       </span>

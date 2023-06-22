@@ -79,7 +79,7 @@ if (auth()->user()->access_rights != 'Merchant') {
             </nav>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <h1 class="position-absolute top-50 start-50 translate-middle">Product Data Update</h1>
+                <h1 class="position-absolute top-50 start-50 translate-middle">Update Monetary</h1>
                 <nav class="navbar navbar-expand-lg">
                     &nbsp; &nbsp;
                     <div class="dropdown ml-auto">

@@ -48,8 +48,6 @@ $profilePicture = $user->picture;
 </head>
 
 <body>
-
-    <div class="background"></div>
     <!-- ***** scroll start***** -->
     <button onclick="scrollToTop()" id="scrollToTopBtn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
