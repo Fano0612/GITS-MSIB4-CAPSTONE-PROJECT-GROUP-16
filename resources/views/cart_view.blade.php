@@ -162,9 +162,9 @@ $profilePicture = $user->picture;
                         <h5 class="card-title">{{ $cl->product_name }}</h5>
                         <p class="card-text">Rp {{ number_format($cl->product_price, 0, ',', '.') }}.00</p>
                         <p class="card-text">Quantity:
-                            <button class="btn btn-sm increment-btn" data-product-id="{{$cl->product_id}}">+</button>
-                            &nbsp; <span class="quantity">{{$cl->quantity}}</span> &nbsp;
                             <button class="btn btn-sm decrement-btn" data-product-id="{{$cl->product_id}}">-</button>
+                            &nbsp; <span class="quantity">{{$cl->quantity}}</span> &nbsp;
+                            <button class="btn btn-sm increment-btn" data-product-id="{{$cl->product_id}}">+</button>
                         </p>
 
                         <a href="#" class="btn delete" data-id="{{ $cl->product_id }} ">Remove</a>
